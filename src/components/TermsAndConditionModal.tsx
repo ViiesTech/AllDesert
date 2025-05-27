@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import Modal from 'react-native-modal';
 import {
   responsiveHeight,
@@ -27,7 +27,7 @@ const TermsAndConditionModal = ({
   return (
     <Modal
       isVisible={isVisible}
-      backdropOpacity={0.2}
+      backdropOpacity={0.8}
       onBackdropPress={onBackdropPress}
       style={{
         flex: 1,

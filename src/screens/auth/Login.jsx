@@ -18,12 +18,17 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import AppButton from '../../components/AppButton';
 import {useNavigation} from '@react-navigation/native';
 import TermsAndConditionModal from '../../components/TermsAndConditionModal';
+import EmailVerificationModal from '../../components/EmailVerificationModal';
+import WelcomeModal from '../../components/WelcomeModal';
 
 const Login = () => {
   const [isHidePass, setIsHidePass] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const navigation = useNavigation();
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [showEmailVerificationModal, setShowEmailVerificationModal] =
+    useState(false);
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
 
   return (
     <ScrollView
@@ -44,7 +49,26 @@ const Login = () => {
         isVisible={showPrivacyModal}
         onBackdropPress={() => setShowPrivacyModal(false)}
         declineOnPress={() => setShowPrivacyModal(false)}
-        agreeOnPress={() => setShowPrivacyModal(false)}
+        agreeOnPress={() => {
+          setShowPrivacyModal(false);
+          setShowEmailVerificationModal(true);
+        }}
+      />
+
+      <EmailVerificationModal
+        isVisible={showEmailVerificationModal}
+        onBackdropPress={() => setShowEmailVerificationModal(false)}
+        submitOnPress={() => {
+          setShowEmailVerificationModal(false);
+          setShowWelcomeModal(true);
+        }}
+      />
+
+      <WelcomeModal
+        isVisible={showWelcomeModal}
+        submitOnPress={() => setShowWelcomeModal(false)}
+        onBackdropPress={() => setShowWelcomeModal(false)}
+        exploreOnPress={() => setShowWelcomeModal(false)}
       />
 
       <View style={{paddingHorizontal: responsiveWidth(8), gap: 15}}>
