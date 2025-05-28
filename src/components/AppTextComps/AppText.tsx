@@ -17,6 +17,7 @@ type textProps = {
   textwidth?: any;
   textTransform?: any;
   lineHeight?:any;
+  numberOfLines?:any;
 };
 
 const AppText = ({
@@ -28,9 +29,11 @@ const AppText = ({
   textwidth,
   textTransform,
   lineHeight,
+  numberOfLines,
 }: textProps) => {
   return (
     <Text
+      numberOfLines={numberOfLines}
       style={{
         width: textwidth ? responsiveWidth(textwidth) : null,
         fontSize: textSize

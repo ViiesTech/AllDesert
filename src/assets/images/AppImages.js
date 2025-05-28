@@ -3,4 +3,6 @@ export default APPIMAGE = {
     onboarding_bg: require('../images/onboard_bg.png'),
     email: require('../images/email.png'),
     user: require('../images/user.png'),
+    home_bg: require('../images/home_bg.png'),
+    service_img: require('../images/service.png'),
 }
