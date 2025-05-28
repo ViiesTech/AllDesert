@@ -24,6 +24,9 @@ import AppTextInput from '../../components/AppTextInput';
 import LineBreak from '../../components/LineBreak';
 import AppIcons from '../../assets/icons/AppIcons';
 import SVGXml from '../../components/SVGXML';
+import ServicesCard from '../../components/ServicesCard';
+import {useNavigation} from '@react-navigation/native';
+import CategoriesCard from '../../components/CategoriesCard';
 
 const categoryData = [
   {id: 1, title: 'Fridge Repair', icon: AppIcons.fridge},
@@ -58,6 +61,7 @@ const serviceData = [
 ];
 
 const Home = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView style={{flex: 1, backgroundColor: AppColors.WHITE}}>
       <ImageBackground
@@ -169,7 +173,8 @@ const Home = () => {
             textFontWeight
           />
 
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('AllCategories')}>
             <AppText
               title={'View All'}
               textColor={AppColors.BTNCOLOURS}
@@ -192,36 +197,7 @@ const Home = () => {
           }}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity
-                style={{
-                  borderWidth: 0.5,
-                  width: responsiveWidth(26),
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderColor: AppColors.DARKGRAY,
-                  borderRadius: 10,
-                }}>
-                <View
-                  style={{
-                    backgroundColor: '#f0f0fa',
-                    width: responsiveWidth(25),
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: 10,
-                  }}>
-                  <SVGXml icon={item.icon} width={70} height={70} />
-                </View>
-                <View
-                  style={{
-                    paddingVertical: responsiveHeight(0.8),
-                  }}>
-                  <AppText
-                    title={item.title}
-                    textColor={AppColors.BLACK}
-                    textSize={1.5}
-                  />
-                </View>
-              </TouchableOpacity>
+              <CategoriesCard item={item} />
             );
           }}
         />
@@ -264,114 +240,94 @@ const Home = () => {
           ListFooterComponent={() => <LineBreak space={2} />}
           contentContainerStyle={{paddingLeft: responsiveWidth(6), gap: 20}}
           renderItem={({item}) => {
-            return (
-              <View
-                style={{
-                  backgroundColor: AppColors.WHITE,
-                  position: 'relative',
-                  borderRadius: 15,
-                }}>
-                <ImageBackground
-                  source={item.img}
-                  style={{
-                    width: responsiveWidth(70),
-                    height: responsiveHeight(20),
-                  }}
-                  imageStyle={{
-                    borderTopLeftRadius: 15,
-                    borderTopRightRadius: 15,
-                  }}>
-                  <View
-                    style={{
-                      backgroundColor: AppColors.WHITE,
-                      padding: 7,
-                      width: responsiveWidth(25),
-                      marginHorizontal: responsiveWidth(4),
-                      marginVertical: responsiveHeight(2),
-                      alignItems: 'center',
-                      borderRadius: 100,
-                    }}>
-                    <AppText
-                      title={item.tagName}
-                      textColor={AppColors.BTNCOLOURS}
-                      textSize={1.6}
-                      textFontWeight
-                    />
-                  </View>
-
-                  <View
-                    style={{
-                      backgroundColor: AppColors.BTNCOLOURS,
-                      padding: 7,
-                      width: responsiveWidth(18),
-                      alignItems: 'center',
-                      borderRadius: 100,
-                      position: 'absolute',
-                      bottom: responsiveHeight(-2),
-                      right: responsiveWidth(5),
-                      borderWidth: 4,
-                      borderColor: AppColors.WHITE,
-                    }}>
-                    <AppText
-                      title={`₹${item.priceTag}`}
-                      textColor={AppColors.WHITE}
-                      textSize={1.6}
-                      textFontWeight
-                    />
-                  </View>
-                </ImageBackground>
-
-                <LineBreak space={2} />
-
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    gap: 8,
-                    alignItems: 'center',
-                    paddingHorizontal: responsiveWidth(4),
-                  }}>
-                  <View style={{flexDirection: 'row', gap: 2}}>
-                    {[...Array(5)].map((_, index) => (
-                      <Ionicons
-                        key={index}
-                        name="star"
-                        size={responsiveFontSize(1.6)}
-                        color={AppColors.Yellow}
-                      />
-                    ))}
-                  </View>
-                  <AppText
-                    title={item.rating}
-                    textColor={'#A2845E'}
-                    textSize={1.5}
-                    textFontWeight
-                  />
-                </View>
-
-                <LineBreak space={0.5} />
-
-                <View
-                  style={{
-                    paddingHorizontal: responsiveWidth(4),
-                  }}>
-                  <AppText
-                    title={item.title}
-                    textColor={AppColors.BTNCOLOURS}
-                    textSize={2}
-                    textFontWeight
-                    numberOfLines={1}
-                  />
-                </View>
-
-                <LineBreak space={4} />
-              </View>
-            );
+            return <ServicesCard item={item} />;
           }}
         />
 
         <LineBreak space={2} />
       </View>
       <LineBreak space={2} />
+
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingHorizontal: responsiveWidth(8),
+        }}>
+        <AppText
+          title={'Featured'}
+          textColor={AppColors.BLACK}
+          textSize={2.2}
+          textFontWeight
+        />
+
+        <TouchableOpacity>
+          <AppText
+            title={'View All'}
+            textColor={AppColors.DARKGRAY}
+            textSize={1.8}
+            textFontWeight
+          />
+        </TouchableOpacity>
+      </View>
+
+      <LineBreak space={2} />
+
+      <FlatList
+        data={serviceData}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        ListFooterComponent={() => <LineBreak space={2} />}
+        contentContainerStyle={{paddingLeft: responsiveWidth(6), gap: 20}}
+        renderItem={({item}) => {
+          return <ServicesCard item={item} featured={'featured'} />;
+        }}
+      />
+
+      <LineBreak space={2} />
+
+      <View
+        style={{
+          backgroundColor: AppColors.BTNCOLOURS,
+          paddingHorizontal: responsiveWidth(8),
+          paddingVertical: responsiveHeight(2),
+          alignItems: 'center',
+        }}>
+        <LineBreak space={1} />
+        <Image
+          source={AppImages.stars}
+          style={{width: responsiveWidth(90)}}
+          resizeMode="contain"
+        />
+        <LineBreak space={3} />
+        <AppText
+          title={'Introducing Customer Rating'}
+          textColor={AppColors.WHITE}
+          textSize={2.2}
+          textFontWeight
+          textAlignment={'center'}
+        />
+        <TouchableOpacity
+          style={{
+            backgroundColor: AppColors.WHITE,
+            width: responsiveWidth(32),
+            paddingVertical: responsiveHeight(1),
+            marginHorizontal: responsiveWidth(4),
+            marginVertical: responsiveHeight(2),
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 5,
+          }}>
+          <AppText
+            title={'See Your Rating'}
+            textColor={AppColors.BTNCOLOURS}
+            textSize={1.6}
+            textFontWeight
+          />
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };

@@ -12,6 +12,8 @@ import {Image} from 'react-native';
 import AppImages from '../assets/images/AppImages';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AppColors from '../utils/AppColors';
+import AllCategories from '../screens/main/AllCategories';
+import ServiceReqForm from '../screens/main/ServiceReqForm';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -20,6 +22,8 @@ const Main = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Main" component={MyTabs} />
+      <Stack.Screen name="AllCategories" component={AllCategories} />
+      <Stack.Screen name="ServiceReqForm" component={ServiceReqForm} />
     </Stack.Navigator>
   );
 };

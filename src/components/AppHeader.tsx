@@ -1,8 +1,10 @@
-import {View, Text} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import {View} from 'react-native';
 import AppText from './AppTextComps/AppText';
 import AppColors from '../utils/AppColors';
 import BackIcon from './AppTextComps/BackIcon';
+import { responsiveHeight, responsiveWidth } from '../utils/Responsive_Dimensions';
 
 type props = {
   heading?: string;
@@ -25,6 +27,8 @@ const AppHeader = ({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        paddingTop: responsiveHeight(3),
+        paddingHorizontal: responsiveWidth(4),
       }}>
       <View >
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -38,7 +42,6 @@ const AppHeader = ({
           {icon}
           <AppText
             title={heading}
-            textFontWeight
             textSize={2.5}
             textColor={AppColors.BLACK}
           />
