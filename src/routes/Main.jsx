@@ -14,6 +14,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AppColors from '../utils/AppColors';
 import AllCategories from '../screens/main/AllCategories';
 import ServiceReqForm from '../screens/main/ServiceReqForm';
+import Notifications from '../screens/main/Notifications';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,6 +25,7 @@ const Main = () => {
       <Stack.Screen name="Main" component={MyTabs} />
       <Stack.Screen name="AllCategories" component={AllCategories} />
       <Stack.Screen name="ServiceReqForm" component={ServiceReqForm} />
+      <Stack.Screen name="Notifications" component={Notifications} />
     </Stack.Navigator>
   );
 };

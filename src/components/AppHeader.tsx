@@ -4,7 +4,10 @@ import {View} from 'react-native';
 import AppText from './AppTextComps/AppText';
 import AppColors from '../utils/AppColors';
 import BackIcon from './AppTextComps/BackIcon';
-import { responsiveHeight, responsiveWidth } from '../utils/Responsive_Dimensions';
+import {
+  responsiveHeight,
+  responsiveWidth,
+} from '../utils/Responsive_Dimensions';
 
 type props = {
   heading?: string;
@@ -12,6 +15,8 @@ type props = {
   Rightheading?: string;
   icon?: any;
   goBack?: boolean;
+  borderBottomWidth?:any;
+  borderBottomColor?:any;
 };
 
 const AppHeader = ({
@@ -20,41 +25,41 @@ const AppHeader = ({
   subheading,
   icon,
   goBack,
+  borderBottomWidth,
+  borderBottomColor,
 }: props) => {
   return (
     <View
       style={{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        // alignItems: 'center',
         paddingTop: responsiveHeight(3),
         paddingHorizontal: responsiveWidth(4),
+        borderBottomWidth: borderBottomWidth,
+        borderBottomColor: borderBottomColor,
+        position: 'relative',
       }}>
-      <View >
+      <View>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-
           {goBack && (
-            <View style={{marginRight: 10}}>
+            <View style={{marginRight: responsiveWidth(3)}}>
               <BackIcon />
             </View>
           )}
 
-          {icon}
-          <AppText
-            title={heading}
-            textSize={2.5}
-            textColor={AppColors.BLACK}
-          />
+          <AppText title={heading} textSize={2.5} textColor={AppColors.BLACK} />
         </View>
         <AppText title={subheading} textColor={'#777777'} textSize={2} />
       </View>
+      {icon}
 
-      <AppText
+      {/* <AppText
         title={Rightheading}
         textFontWeight
         textSize={2}
         textColor={AppColors.BLACK}
-      />
+      /> */}
     </View>
   );
 };

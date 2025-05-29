@@ -91,7 +91,9 @@ const Home = () => {
               alignItems: 'center',
               borderRadius: 5,
               backgroundColor: AppColors.WHITE,
-            }}>
+            }}
+            onPress={() => navigation.navigate('Notifications')}
+            >
             <MaterialCommunityIcons
               name="bell-badge-outline"
               size={responsiveFontSize(2.5)}
