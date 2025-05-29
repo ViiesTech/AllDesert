@@ -73,7 +73,9 @@ const Notifications = () => {
               position: 'absolute',
               right: responsiveWidth(5),
               top: responsiveHeight(2.1),
-            }}>
+            }}
+            onPress={() => navigation.navigate('Main')}
+            >
             <AntDesign
               name="user"
               size={responsiveFontSize(2.5)}

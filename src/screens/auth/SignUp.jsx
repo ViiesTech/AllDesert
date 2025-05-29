@@ -65,9 +65,15 @@ const SignUp = () => {
 
       <WelcomeModal
         isVisible={showWelcomeModal}
-        submitOnPress={() => setShowWelcomeModal(false)}
+        submitOnPress={() => {
+          navigation.navigate('Main');
+          setShowWelcomeModal(false);
+        }}
         onBackdropPress={() => setShowWelcomeModal(false)}
-        exploreOnPress={() => setShowWelcomeModal(false)}
+        exploreOnPress={() => {
+          navigation.navigate('Main');
+          setShowWelcomeModal(false);
+        }}
       />
 
       <View style={{paddingHorizontal: responsiveWidth(8), gap: 15}}>

@@ -23,7 +23,6 @@ import AppText from '../../components/AppTextComps/AppText';
 import AppTextInput from '../../components/AppTextInput';
 import LineBreak from '../../components/LineBreak';
 import AppIcons from '../../assets/icons/AppIcons';
-import SVGXml from '../../components/SVGXML';
 import ServicesCard from '../../components/ServicesCard';
 import {useNavigation} from '@react-navigation/native';
 import CategoriesCard from '../../components/CategoriesCard';

@@ -6,4 +6,5 @@ export default APPIMAGE = {
     home_bg: require('../images/home_bg.png'),
     service_img: require('../images/service.png'),
     stars: require('../images/stars.png'),
+    map: require('../images/map.png'),
 }

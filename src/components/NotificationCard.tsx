@@ -9,12 +9,15 @@ import {
 import AppText from './AppTextComps/AppText';
 import LineBreak from './LineBreak';
 import AppButton from './AppButton';
+import {useNavigation} from '@react-navigation/native';
 
 type Props = {
   item?: any;
+  orderHistory?: any;
 };
 
-const NotificationCard = ({item}: Props) => {
+const NotificationCard = ({item, orderHistory}: Props) => {
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -69,17 +72,19 @@ const NotificationCard = ({item}: Props) => {
                 textSize={1.8}
               />
             </View>
-            <AppText
-              title={item.usd}
-              textColor={AppColors.BTNCOLOURS}
-              textSize={3}
-              textFontWeight
-            />
+            {!orderHistory && (
+              <AppText
+                title={item.usd}
+                textColor={AppColors.BTNCOLOURS}
+                textSize={3}
+                textFontWeight
+              />
+            )}
           </View>
         </View>
       </View>
 
-      <LineBreak space={3} />
+      <LineBreak space={orderHistory ? 1.5 : 3} />
 
       <View
         style={{
@@ -87,61 +92,92 @@ const NotificationCard = ({item}: Props) => {
           justifyContent: 'space-between',
           alignItems: 'center',
         }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            gap: 10,
-            alignItems: 'center',
-          }}>
-          <AppButton
-            title="Decline"
-            textColor={AppColors.BLACK}
-            bgColor={AppColors.WHITE}
-            borderWidth={1}
-            textFontWeight={false}
-            borderColor={AppColors.BLACK}
-            borderRadius={5}
-            padding={2}
-            buttoWidth={15}
-            textSize={1.5}
-            handlePress={() => {}}
-          />
-          <AppButton
-            title="Accept"
-            textColor={AppColors.WHITE}
-            bgColor={AppColors.BTNCOLOURS}
-            textFontWeight={false}
-            borderRadius={5}
-            padding={3}
-            buttoWidth={15}
-            textSize={1.5}
-            handlePress={() => {}}
-          />
-        </View>
+        {!orderHistory && (
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: 10,
+              alignItems: 'center',
+            }}>
+            <AppButton
+              title="Decline"
+              textColor={AppColors.BLACK}
+              bgColor={AppColors.WHITE}
+              borderWidth={1}
+              textFontWeight={false}
+              borderColor={AppColors.BLACK}
+              borderRadius={5}
+              padding={2}
+              buttoWidth={15}
+              textSize={1.5}
+              handlePress={() => {}}
+            />
+            <AppButton
+              title="Accept"
+              textColor={AppColors.WHITE}
+              bgColor={AppColors.BTNCOLOURS}
+              textFontWeight={false}
+              borderRadius={5}
+              padding={3}
+              buttoWidth={15}
+              textSize={1.5}
+              handlePress={() => navigation.navigate('TechnicianOnWay')}
+            />
+          </View>
+        )}
 
-        <View
-          style={{
-            flexDirection: 'row',
-            gap: 10,
-            alignItems: 'center',
-          }}>
-          <AppText
-            title={item.date}
-            textColor={AppColors.DARKGRAY}
-            textSize={1.8}
-          />
-          <AppButton
-            title="It’s Available"
-            textColor={AppColors.WHITE}
-            bgColor={AppColors.PRIMARY}
-            textFontWeight={false}
-            borderRadius={5}
-            padding={4}
-            buttoWidth={22}
-            textSize={1.5}
-            handlePress={() => {}}
-          />
-        </View>
+        {orderHistory && (
+          <View>
+            <AppButton
+              title="Order Completed"
+              textColor={AppColors.WHITE}
+              bgColor={AppColors.BTNCOLOURS}
+              textFontWeight={false}
+              borderRadius={5}
+              padding={4}
+              buttoWidth={37}
+              textSize={1.5}
+              handlePress={() => {}}
+            />
+          </View>
+        )}
+
+        {orderHistory && (
+          <View>
+            <AppText
+              title={item.usd}
+              textColor={AppColors.BTNCOLOURS}
+              textSize={3}
+              textFontWeight
+            />
+          </View>
+        )}
+
+        {!orderHistory && (
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: 10,
+              alignItems: 'center',
+            }}>
+            <AppText
+              title={item.date}
+              textColor={AppColors.DARKGRAY}
+              textSize={1.8}
+            />
+            <AppButton
+              title="It’s Available"
+              textColor={AppColors.WHITE}
+              bgColor={AppColors.PRIMARY}
+              textFontWeight={false}
+              borderRadius={5}
+              padding={4}
+              buttoWidth={22}
+              textSize={1.5}
+              handlePress={() => {}}
+            />
+          </View>
+        )}
       </View>
     </View>
   );

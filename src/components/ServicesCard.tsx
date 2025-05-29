@@ -10,6 +10,7 @@ import {
 import AppText from './AppTextComps/AppText';
 import LineBreak from './LineBreak';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
   item?: any;
@@ -17,6 +18,7 @@ type Props = {
 };
 
 const ServicesCard = ({item, featured}: Props) => {
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -150,7 +152,9 @@ const ServicesCard = ({item, featured}: Props) => {
                 marginVertical: responsiveHeight(2),
                 alignItems: 'center',
                 borderRadius: 100,
-              }}>
+              }}
+              onPress={() => navigation.navigate('ViewProfile', {heading: item.userName})}
+              >
               <AppText
                 title={'View Profile'}
                 textColor={AppColors.WHITE}
