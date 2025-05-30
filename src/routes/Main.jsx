@@ -3,11 +3,7 @@ import React from 'react';
 import Home from '../screens/main/Home';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {
-  responsiveFontSize,
-  responsiveHeight,
-  responsiveWidth,
-} from '../utils/Responsive_Dimensions';
+import {responsiveHeight} from '../utils/Responsive_Dimensions';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import AppColors from '../utils/AppColors';

@@ -15,6 +15,7 @@ type Colors = {
     ThemeBlue: string
     GRAY: string
     Yellow: string
+    lightRed: string
   };
   
 const   AppColors: Colors = {
@@ -35,6 +36,7 @@ const   AppColors: Colors = {
     rightArrowCOlor: "#3D56F0",
     ThemeBlue: '#0893fa',
     Yellow: '#FF9C12',
+    lightRed: '#FFD7D7',
   };
   
   export default AppColors;

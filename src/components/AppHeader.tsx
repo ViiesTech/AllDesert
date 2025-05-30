@@ -17,6 +17,7 @@ type props = {
   goBack?: boolean;
   borderBottomWidth?:any;
   borderBottomColor?:any;
+  textFontWeight?:any;
 };
 
 const AppHeader = ({
@@ -27,6 +28,7 @@ const AppHeader = ({
   goBack,
   borderBottomWidth,
   borderBottomColor,
+  textFontWeight,
 }: props) => {
   return (
     <View
@@ -48,7 +50,7 @@ const AppHeader = ({
             </View>
           )}
 
-          <AppText title={heading} textSize={2.5} textColor={AppColors.BLACK} />
+          <AppText title={heading} textSize={2.5} textColor={AppColors.BLACK} textFontWeight={textFontWeight} />
         </View>
         <AppText title={subheading} textColor={'#777777'} textSize={2} />
       </View>
