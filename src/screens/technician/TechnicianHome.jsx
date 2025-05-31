@@ -21,7 +21,6 @@ import AppColors from '../../utils/AppColors';
 import AppText from '../../components/AppTextComps/AppText';
 import LineBreak from '../../components/LineBreak';
 import ActiveTaskCard from '../../components/ActiveTaskCard';
-import {useNavigation} from '@react-navigation/native';
 import {useCustomNavigation} from '../../utils/Hooks';
 
 const statusData = [

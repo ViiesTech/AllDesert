@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import AppColors from '../utils/AppColors';
 import {
   responsiveFontSize,
@@ -10,14 +10,19 @@ import {
 import AppText from './AppTextComps/AppText';
 import LineBreak from './LineBreak';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useCustomNavigation} from '../utils/Hooks';
 
 type Props = {
   item?: any;
 };
 
 const ActiveTaskCard = ({item}: Props) => {
+  const {navigateToRoute} = useCustomNavigation();
+
   return (
-    <View style={{gap: 5}}>
+    <TouchableOpacity
+      style={{gap: 5}}
+      onPress={() => navigateToRoute('TaskDetails')}>
       <View
         style={{
           backgroundColor: AppColors.WHITE,
@@ -125,7 +130,7 @@ const ActiveTaskCard = ({item}: Props) => {
           </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

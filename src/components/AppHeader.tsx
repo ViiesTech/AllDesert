@@ -8,6 +8,7 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from '../utils/Responsive_Dimensions';
+import LineBreak from './LineBreak';
 
 type props = {
   heading?: string;
@@ -15,9 +16,11 @@ type props = {
   Rightheading?: string;
   icon?: any;
   goBack?: boolean;
-  borderBottomWidth?:any;
-  borderBottomColor?:any;
-  textFontWeight?:any;
+  borderBottomWidth?: any;
+  borderBottomColor?: any;
+  textFontWeight?: any;
+  isCenteredHead?: any;
+  taskId?: any;
 };
 
 const AppHeader = ({
@@ -29,6 +32,8 @@ const AppHeader = ({
   borderBottomWidth,
   borderBottomColor,
   textFontWeight,
+  isCenteredHead,
+  taskId,
 }: props) => {
   return (
     <View
@@ -43,14 +48,36 @@ const AppHeader = ({
         position: 'relative',
       }}>
       <View>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            width: responsiveWidth(60),
+            justifyContent: isCenteredHead ? 'space-between' : 'flex-start',
+            alignItems: 'center',
+          }}>
           {goBack && (
             <View style={{marginRight: responsiveWidth(3)}}>
               <BackIcon />
             </View>
           )}
-
-          <AppText title={heading} textSize={2.5} textColor={AppColors.BLACK} textFontWeight={textFontWeight} />
+          <View>
+            <AppText
+              title={heading}
+              textSize={2.5}
+              textColor={AppColors.BLACK}
+              textFontWeight={textFontWeight}
+            />
+            <LineBreak space={0.3} />
+            {taskId && (
+              <AppText
+                title={taskId}
+                textSize={1.3}
+                textColor={AppColors.DARKGRAY}
+                textFontWeight={textFontWeight}
+                textAlignment={'center'}
+              />
+            )}
+          </View>
         </View>
         <AppText title={subheading} textColor={'#777777'} textSize={2} />
       </View>

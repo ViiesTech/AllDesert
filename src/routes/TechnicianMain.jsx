@@ -19,6 +19,7 @@ import Chat from '../screens/technician/Chat';
 import Community from '../screens/technician/Community';
 import {TouchableOpacity, View} from 'react-native';
 import Notifications from '../screens/technician/Notifications';
+import TaskDetails from '../screens/technician/TaskDetails';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,6 +29,7 @@ const TechnicianMain = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="TechnicianMain" component={MyTabs} />
       <Stack.Screen name="Notifications" component={Notifications} />
+      <Stack.Screen name="TaskDetails" component={TaskDetails} />
     </Stack.Navigator>
   );
 };
