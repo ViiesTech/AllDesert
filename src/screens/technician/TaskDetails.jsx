@@ -21,14 +21,16 @@ const TaskDetails = () => {
         <ActiveTaskCard
           item={{
             id: 1,
-            taskId: 'TASK #13424',
+            taskId: '10/05/2020',
             taskTime: '3hr',
             status: 'Open',
-            desc: 'Service kondensor AC dan tiga kipas angin',
+            desc: 'AC condenser with 3 outdoor units maintenance',
             timeLeft: '16 hour left',
-            location: 'Tegal Mulyorejo Baru',
-            km: '1.3 km',
+            unitInfo: 'UNIT INFORMATION',
+            samsung: 'Samsung S02EV6',
+            viewDetails: 'View Details',
           }}
+          taskDetails={'taskDetails'}
         />
       </View>
     </View>

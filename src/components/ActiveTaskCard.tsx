@@ -14,9 +14,10 @@ import {useCustomNavigation} from '../utils/Hooks';
 
 type Props = {
   item?: any;
+  taskDetails?: any;
 };
 
-const ActiveTaskCard = ({item}: Props) => {
+const ActiveTaskCard = ({item, taskDetails}: Props) => {
   const {navigateToRoute} = useCustomNavigation();
 
   return (
@@ -104,31 +105,60 @@ const ActiveTaskCard = ({item}: Props) => {
           textSize={1.7}
           textFontWeight
         />
-        <LineBreak space={2} />
-        <View
-          style={{
-            flexDirection: 'row',
-            gap: 5,
-          }}>
-          <Ionicons
-            name={'location-sharp'}
-            size={responsiveFontSize(3.5)}
-            color={AppColors.BTNCOLOURS}
-          />
-          <View>
-            <AppText
-              title={item.location}
-              textColor={AppColors.LIGHTGRAY}
-              textSize={1.8}
-            />
-            <LineBreak space={0.5} />
-            <AppText
-              title={item.km}
-              textColor={AppColors.DARKGRAY}
-              textSize={1.6}
-            />
+        <LineBreak space={taskDetails ? 3 : 2} />
+        {item.location && item.km ? (
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: 5,
+            }}>
+            {item.location && (
+              <Ionicons
+                name={'location-sharp'}
+                size={responsiveFontSize(3.5)}
+                color={AppColors.BTNCOLOURS}
+              />
+            )}
+            <View>
+              <AppText
+                title={item.location}
+                textColor={AppColors.LIGHTGRAY}
+                textSize={1.8}
+              />
+              <LineBreak space={0.5} />
+              <AppText
+                title={item.km}
+                textColor={AppColors.DARKGRAY}
+                textSize={1.6}
+              />
+            </View>
           </View>
-        </View>
+        ) : null}
+
+        {taskDetails && (
+          <View style={{gap: 7}}>
+            <AppText
+              title={item.unitInfo}
+              textColor={AppColors.DARKGRAY}
+              textSize={1.7}
+              textFontWeight
+            />
+            <AppText
+              title={item.samsung}
+              textColor={AppColors.BLACK}
+              textSize={1.7}
+              textFontWeight
+            />
+            <TouchableOpacity>
+              <AppText
+                title={item.viewDetails}
+                textColor={AppColors.BTNCOLOURS}
+                textSize={1.7}
+                textFontWeight
+              />
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </TouchableOpacity>
   );
