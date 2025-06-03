@@ -15,7 +15,7 @@ import {
 } from '../utils/Responsive_Dimensions';
 import Calendar from '../screens/technician/Calendar';
 import Camera from '../screens/technician/Camera';
-import Chat from '../screens/technician/Chat';
+import ChatList from '../screens/technician/ChatList';
 import Community from '../screens/technician/Community';
 import {TouchableOpacity, View} from 'react-native';
 import Notifications from '../screens/technician/Notifications';
@@ -24,6 +24,9 @@ import CustomerDetails from '../screens/technician/CustomerDetails';
 import TaskInfo from '../screens/technician/TaskInfo';
 import AddNotes from '../screens/technician/AddNotes';
 import UserDetails from '../screens/technician/UserDetails';
+import Calling from '../screens/technician/Calling';
+import Technician from '../screens/technician/Technician';
+import PrivateChat from '../screens/technician/PrivateChat';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -38,6 +41,9 @@ const TechnicianMain = () => {
       <Stack.Screen name="TaskInfo" component={TaskInfo} />
       <Stack.Screen name="AddNotes" component={AddNotes} />
       <Stack.Screen name="UserDetails" component={UserDetails} />
+      <Stack.Screen name="Calling" component={Calling} />
+      <Stack.Screen name="Technician" component={Technician} />
+      <Stack.Screen name="PrivateChat" component={PrivateChat} />
     </Stack.Navigator>
   );
 };
@@ -130,7 +136,7 @@ function MyTabs() {
           ),
         }}
       />
-      <Tab.Screen name="Chats" component={Chat} />
+      <Tab.Screen name="Chats" component={ChatList} />
       <Tab.Screen name="Community" component={Community} />
     </Tab.Navigator>
   );

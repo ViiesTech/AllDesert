@@ -5,10 +5,12 @@ import AppText from './AppTextComps/AppText';
 import AppColors from '../utils/AppColors';
 import BackIcon from './AppTextComps/BackIcon';
 import {
+  responsiveFontSize,
   responsiveHeight,
   responsiveWidth,
 } from '../utils/Responsive_Dimensions';
 import LineBreak from './LineBreak';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type props = {
   heading?: string;
@@ -21,8 +23,9 @@ type props = {
   textFontWeight?: any;
   isCenteredHead?: any;
   taskId?: any;
-  isCenteredHeadWidth?:any;
-  headerBg?:any;
+  isCenteredHeadWidth?: any;
+  headerBg?: any;
+  privateChat?: any;
 };
 
 const AppHeader = ({
@@ -38,6 +41,7 @@ const AppHeader = ({
   taskId,
   isCenteredHeadWidth,
   headerBg,
+  privateChat,
 }: props) => {
   return (
     <View
@@ -56,7 +60,9 @@ const AppHeader = ({
         <View
           style={{
             flexDirection: 'row',
-            width: isCenteredHeadWidth ? responsiveWidth(isCenteredHeadWidth) : responsiveWidth(60),
+            width: isCenteredHeadWidth
+              ? responsiveWidth(isCenteredHeadWidth)
+              : responsiveWidth(60),
             justifyContent: isCenteredHead ? 'space-between' : 'flex-start',
             alignItems: 'center',
           }}>
@@ -84,7 +90,24 @@ const AppHeader = ({
             )}
           </View>
         </View>
-        <AppText title={subheading} textColor={'#777777'} textSize={2} />
+        {privateChat && <LineBreak space={2} />}
+        <View style={privateChat ? {flexDirection: 'row', gap: 5} : null}>
+          {privateChat && (
+            <Ionicons
+              name="location"
+              size={responsiveFontSize(2.2)}
+              color={AppColors.BTNCOLOURS}
+            />
+          )}
+          <AppText
+            title={subheading}
+            textColor={'#777777'}
+            textSize={privateChat ? 1.6 : 2}
+            textwidth={privateChat ? 60 : 100}
+            lineHeight={privateChat ? 2.3 : null}
+          />
+        </View>
+        {privateChat && <LineBreak space={1} />}
       </View>
       {icon}
 

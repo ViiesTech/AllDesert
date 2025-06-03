@@ -16,6 +16,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import AppButton from '../../components/AppButton';
 import {useCustomNavigation} from '../../utils/Hooks';
 import TaskCompletedModal from '../../components/TaskCompletedModal';
+import TaskCompletenessCard from '../../components/TaskCompletenessCard';
+import CustomerNoteCard from '../../components/CustomerNoteCard';
 
 const data = [
   {
@@ -87,96 +89,11 @@ const TaskInfo = () => {
         />
         <LineBreak space={1} />
 
-        <View
-          style={{
-            backgroundColor: AppColors.WHITE,
-            paddingVertical: responsiveHeight(1),
-          }}>
-          <FlatList
-            data={data}
-            renderItem={({item}) => {
-              return (
-                <View
-                  style={{
-                    paddingVertical: responsiveHeight(1.5),
-                    borderTopWidth: item.id === 4 ? 4 : 0,
-                    borderTopColor: AppColors.appBgColor,
-                    paddingHorizontal: responsiveWidth(4),
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                  }}>
-                  <AppText
-                    title={item.title}
-                    textColor={AppColors.BLACK}
-                    textSize={1.7}
-                    textFontWeight
-                  />
-                  {item.icon}
-                  {item.id === 4 && (
-                    <View style={{flexDirection: 'row', gap: 4}}>
-                      {[...Array(5)].map((_, index) => (
-                        <AntDesign
-                          key={index}
-                          name="star"
-                          size={responsiveFontSize(2.5)}
-                          color={'#FFCC00'}
-                        />
-                      ))}
-                    </View>
-                  )}
-                </View>
-              );
-            }}
-          />
-        </View>
+        <TaskCompletenessCard data={data} />
 
         <LineBreak space={1} />
 
-        <View
-          style={{
-            backgroundColor: AppColors.WHITE,
-            paddingHorizontal: responsiveWidth(4),
-            paddingVertical: responsiveHeight(2),
-          }}>
-          <AppText
-            title={'CUSTOMER NOTE'}
-            textColor={AppColors.GRAY}
-            textSize={1.7}
-            textFontWeight
-          />
-
-          <LineBreak space={0.5} />
-
-          <AppText
-            title={
-              'This machine can’t working well every i turn it on the AC always make a noisy sound, and the AC can always hot ever............'
-            }
-            textColor={AppColors.GRAY}
-            textSize={1.6}
-            textwidth={70}
-            lineHeight={2.5}
-          />
-
-          <LineBreak space={4} />
-
-          <AppText
-            title={'TECHNICAL FEEDBACK'}
-            textColor={AppColors.GRAY}
-            textSize={1.7}
-            textFontWeight
-          />
-
-          <LineBreak space={1} />
-
-          <TouchableOpacity onPress={() => navigateToRoute('AddNotes')}>
-            <AppText
-              title={'Add Note'}
-              textColor={AppColors.BTNCOLOURS}
-              textSize={1.7}
-              textFontWeight
-            />
-          </TouchableOpacity>
-        </View>
+        <CustomerNoteCard />
       </View>
       <View
         style={{

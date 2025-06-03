@@ -1,6 +1,13 @@
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Image, FlatList, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import AppHeader from '../../components/AppHeader';
 import AppColors from '../../utils/AppColors';
 import LineBreak from '../../components/LineBreak';
@@ -14,6 +21,8 @@ import AppText from '../../components/AppTextComps/AppText';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ActiveTaskCard from '../../components/ActiveTaskCard';
+import CompletedTaskCard from '../../components/CompletedTaskCard';
+import {useCustomNavigation} from '../../utils/Hooks';
 
 const socialIcons = [
   {
@@ -26,6 +35,7 @@ const socialIcons = [
       />
     ),
     color: AppColors.BTNCOLOURS,
+    navTo: 'Calling',
   },
   {
     id: 2,
@@ -37,6 +47,7 @@ const socialIcons = [
       />
     ),
     color: AppColors.royalBlue,
+    navTo: 'Calling',
   },
   {
     id: 3,
@@ -48,12 +59,40 @@ const socialIcons = [
       />
     ),
     color: AppColors.hotPink,
+    navTo: 'Technician',
+  },
+];
+
+const completeTaskData = [
+  {
+    id: 1,
+    taskId: 'TASK #13424',
+    taskTime: '3hr',
+    status: 'completed',
+    desc: '2 Heater units and ventilation service',
+    completedAt: '03/07/2020 8;20 AM',
+    username: 'Demi Hickman',
+    rating: '4.8',
+    profImg: AppImages.service_img,
+  },
+  {
+    id: 2,
+    taskId: 'TASK #13424',
+    taskTime: '3hr',
+    status: 'completed',
+    desc: '2 Heater units and ventilation service',
+    completedAt: '03/07/2020 8;20 AM',
+    username: 'Demi Hickman',
+    rating: '4.8',
+    profImg: AppImages.service_img,
   },
 ];
 
 const UserDetails = () => {
+  const {navigateToRoute} = useCustomNavigation();
+
   return (
-    <View style={{flex: 1}}>
+    <ScrollView style={{flex: 1}}>
       <AppHeader
         heading="Task Details"
         goBack
@@ -65,49 +104,70 @@ const UserDetails = () => {
         style={{
           backgroundColor: AppColors.WHITE,
           paddingHorizontal: responsiveWidth(5),
-          alignItems: 'center',
         }}>
-        <LineBreak space={1} />
+        <View
+          style={{
+            alignItems: 'center',
+          }}>
+          <LineBreak space={1} />
+          <Image
+            source={AppImages.service_img}
+            style={{width: 70, height: 70, borderRadius: 100}}
+          />
+          <LineBreak space={1} />
+          <AppText
+            title={'Savannah Nguyen'}
+            textColor={AppColors.BLACK}
+            textSize={2}
+            textFontWeight
+          />
+          <LineBreak space={1} />
+          <AppText
+            title={'3891 Ranchiview Dr Richardson, California 62369'}
+            textColor={AppColors.DARKGRAY}
+            textSize={1.7}
+            textwidth={60}
+            lineHeight={2.5}
+            textAlignment={'center'}
+          />
+          <LineBreak space={2} />
+
+          <FlatList
+            data={socialIcons}
+            horizontal
+            contentContainerStyle={{gap: 15}}
+            renderItem={({item}) => {
+              return (
+                <TouchableOpacity
+                  style={{
+                    borderWidth: 1,
+                    borderColor: item.color,
+                    padding: responsiveHeight(1),
+                    borderRadius: 100,
+                  }}
+                  onPress={() => navigateToRoute(item.navTo)}>
+                  {item.icon}
+                </TouchableOpacity>
+              );
+            }}
+          />
+        </View>
+
+        <LineBreak space={3} />
         <Image
-          source={AppImages.service_img}
-          style={{width: 70, height: 70, borderRadius: 100}}
-        />
-        <LineBreak space={1} />
-        <AppText
-          title={'Savannah Nguyen'}
-          textColor={AppColors.BLACK}
-          textSize={2}
-          textFontWeight
-        />
-        <LineBreak space={1} />
-        <AppText
-          title={'3891 Ranchiview Dr Richardson, California 62369'}
-          textColor={AppColors.DARKGRAY}
-          textSize={1.7}
-          textwidth={60}
-          lineHeight={2.5}
-          textAlignment={'center'}
+          source={AppImages.map}
+          style={{width: responsiveWidth(90), height: responsiveHeight(20)}}
         />
         <LineBreak space={2} />
 
-        <FlatList
-          data={socialIcons}
-          horizontal
-          contentContainerStyle={{gap: 15}}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                style={{
-                  borderWidth: 1,
-                  borderColor: item.color,
-                  padding: responsiveHeight(1),
-                  borderRadius: 100,
-                }}>
-                {item.icon}
-              </TouchableOpacity>
-            );
-          }}
-        />
+        <TouchableOpacity>
+          <AppText
+            title={'set directions'}
+            textColor={AppColors.BTNCOLOURS}
+            textSize={1.6}
+            textFontWeight
+          />
+        </TouchableOpacity>
 
         <LineBreak space={3} />
       </View>
@@ -133,8 +193,19 @@ const UserDetails = () => {
           textSize={2.2}
           textFontWeight
         />
+        <LineBreak space={2} />
+
+        <FlatList
+          data={completeTaskData}
+          ItemSeparatorComponent={() => <LineBreak space={3} />}
+          renderItem={({item}) => {
+            return <CompletedTaskCard item={item} />;
+          }}
+        />
+
+        <LineBreak space={2} />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

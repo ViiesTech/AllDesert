@@ -17,17 +17,24 @@ type Props = {
   item?: any;
   taskDetails?: any;
   customerDetails?: any;
-  statusOnPress?:any;
+  statusOnPress?: any;
+  removeSpace?: any;
 };
 
-const ActiveTaskCard = ({item, taskDetails, customerDetails, statusOnPress}: Props) => {
+const ActiveTaskCard = ({
+  item,
+  taskDetails,
+  customerDetails,
+  statusOnPress,
+  removeSpace,
+}: Props) => {
   const {navigateToRoute} = useCustomNavigation();
 
   return (
     <TouchableOpacity
       style={{gap: 5}}
       onPress={() => {
-        if(!taskDetails && !customerDetails){
+        if (!taskDetails && !customerDetails) {
           navigateToRoute('TaskDetails');
         }
       }}>
@@ -66,7 +73,7 @@ const ActiveTaskCard = ({item, taskDetails, customerDetails, statusOnPress}: Pro
             />
           </View>
           <TouchableOpacity
-          onPress={statusOnPress}
+            onPress={statusOnPress}
             style={{
               paddingHorizontal: responsiveWidth(4),
               width: responsiveWidth(25),
@@ -77,6 +84,8 @@ const ActiveTaskCard = ({item, taskDetails, customerDetails, statusOnPress}: Pro
                   ? AppColors.Yellow
                   : item.status === 'Assigned'
                   ? AppColors.lightRed
+                  : item.status === 'Completed'
+                  ? AppColors.BTNCOLOURS
                   : '#D1F4FF',
             }}>
             <AppText
@@ -86,6 +95,8 @@ const ActiveTaskCard = ({item, taskDetails, customerDetails, statusOnPress}: Pro
                   ? AppColors.WHITE
                   : item.status === 'Assigned'
                   ? 'red'
+                  : item.status === 'Completed'
+                  ? AppColors.WHITE
                   : AppColors.PRIMARY
               }
               textSize={1.5}
@@ -98,7 +109,7 @@ const ActiveTaskCard = ({item, taskDetails, customerDetails, statusOnPress}: Pro
           backgroundColor: AppColors.WHITE,
           paddingHorizontal: responsiveWidth(4),
           paddingVertical: responsiveHeight(2),
-          paddingTop: responsiveHeight(3),
+          paddingTop: removeSpace ? null : responsiveHeight(3),
         }}>
         <AppText
           title={item.desc}
@@ -113,7 +124,7 @@ const ActiveTaskCard = ({item, taskDetails, customerDetails, statusOnPress}: Pro
           textSize={1.7}
           textFontWeight
         />
-        <LineBreak space={taskDetails ? 3 : 2} />
+        {removeSpace ? null : <LineBreak space={taskDetails ? 3 : 2} />}
         {item.location && item.km ? (
           <View
             style={{
