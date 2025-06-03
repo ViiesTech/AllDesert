@@ -21,6 +21,8 @@ type props = {
   textFontWeight?: any;
   isCenteredHead?: any;
   taskId?: any;
+  isCenteredHeadWidth?:any;
+  headerBg?:any;
 };
 
 const AppHeader = ({
@@ -34,6 +36,8 @@ const AppHeader = ({
   textFontWeight,
   isCenteredHead,
   taskId,
+  isCenteredHeadWidth,
+  headerBg,
 }: props) => {
   return (
     <View
@@ -45,13 +49,14 @@ const AppHeader = ({
         paddingHorizontal: responsiveWidth(4),
         borderBottomWidth: borderBottomWidth,
         borderBottomColor: borderBottomColor,
+        backgroundColor: headerBg,
         position: 'relative',
       }}>
       <View>
         <View
           style={{
             flexDirection: 'row',
-            width: responsiveWidth(60),
+            width: isCenteredHeadWidth ? responsiveWidth(isCenteredHeadWidth) : responsiveWidth(60),
             justifyContent: isCenteredHead ? 'space-between' : 'flex-start',
             alignItems: 'center',
           }}>

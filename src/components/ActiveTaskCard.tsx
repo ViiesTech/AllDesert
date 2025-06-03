@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import AppColors from '../utils/AppColors';
 import {
   responsiveFontSize,
@@ -11,19 +11,26 @@ import AppText from './AppTextComps/AppText';
 import LineBreak from './LineBreak';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useCustomNavigation} from '../utils/Hooks';
+import AppImages from '../assets/images/AppImages';
 
 type Props = {
   item?: any;
   taskDetails?: any;
+  customerDetails?: any;
+  statusOnPress?:any;
 };
 
-const ActiveTaskCard = ({item, taskDetails}: Props) => {
+const ActiveTaskCard = ({item, taskDetails, customerDetails, statusOnPress}: Props) => {
   const {navigateToRoute} = useCustomNavigation();
 
   return (
     <TouchableOpacity
       style={{gap: 5}}
-      onPress={() => navigateToRoute('TaskDetails')}>
+      onPress={() => {
+        if(!taskDetails && !customerDetails){
+          navigateToRoute('TaskDetails');
+        }
+      }}>
       <View
         style={{
           backgroundColor: AppColors.WHITE,
@@ -58,7 +65,8 @@ const ActiveTaskCard = ({item, taskDetails}: Props) => {
               textFontWeight
             />
           </View>
-          <View
+          <TouchableOpacity
+          onPress={statusOnPress}
             style={{
               paddingHorizontal: responsiveWidth(4),
               width: responsiveWidth(25),
@@ -82,7 +90,7 @@ const ActiveTaskCard = ({item, taskDetails}: Props) => {
               }
               textSize={1.5}
             />
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
       <View
@@ -135,7 +143,31 @@ const ActiveTaskCard = ({item, taskDetails}: Props) => {
           </View>
         ) : null}
 
-        {taskDetails && (
+        {customerDetails ? (
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 10,
+            }}>
+            <Image
+              source={AppImages.service_img}
+              style={{width: 30, height: 30, borderRadius: 100}}
+            />
+            <View>
+              <AppText
+                title={'you'}
+                textColor={AppColors.BLACK}
+                textSize={2}
+                textFontWeight
+              />
+            </View>
+          </View>
+        ) : null}
+
+        {customerDetails ? <LineBreak space={2} /> : null}
+
+        {taskDetails || customerDetails ? (
           <View style={{gap: 7}}>
             <AppText
               title={item.unitInfo}
@@ -158,7 +190,7 @@ const ActiveTaskCard = ({item, taskDetails}: Props) => {
               />
             </TouchableOpacity>
           </View>
-        )}
+        ) : null}
       </View>
     </TouchableOpacity>
   );

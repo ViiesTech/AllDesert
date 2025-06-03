@@ -16,6 +16,9 @@ type Colors = {
     GRAY: string
     Yellow: string
     lightRed: string
+    appBgColor: string
+    hotPink: string
+    royalBlue: string
   };
   
 const   AppColors: Colors = {
@@ -37,6 +40,9 @@ const   AppColors: Colors = {
     ThemeBlue: '#0893fa',
     Yellow: '#FF9C12',
     lightRed: '#FFD7D7',
+    appBgColor: '#e7e4e4',
+    hotPink: '#E74B90',
+    royalBlue: '#2F6CAD'
   };
   
   export default AppColors;
