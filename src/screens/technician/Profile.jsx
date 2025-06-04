@@ -15,6 +15,7 @@ import LineBreak from '../../components/LineBreak';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SVGXml from '../../components/SVGXML';
 import AppIcons from '../../assets/icons/AppIcons';
+import MyBalanceScreen from '../../components/ProfileComponent';
 
 const Profile = () => {
   return (
@@ -122,6 +123,10 @@ const Profile = () => {
           }}
         />
         <LineBreak space={3} />
+      </View>
+
+      <View>
+        <MyBalanceScreen />
       </View>
     </ScrollView>
   );

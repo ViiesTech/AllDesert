@@ -26,6 +26,7 @@ type props = {
   isCenteredHeadWidth?: any;
   headerBg?: any;
   privateChat?: any;
+  paddingBottom?:any;
 };
 
 const AppHeader = ({
@@ -41,6 +42,7 @@ const AppHeader = ({
   taskId,
   isCenteredHeadWidth,
   headerBg,
+  paddingBottom,
   privateChat,
 }: props) => {
   return (
@@ -54,6 +56,7 @@ const AppHeader = ({
         borderBottomWidth: borderBottomWidth,
         borderBottomColor: borderBottomColor,
         backgroundColor: headerBg,
+        paddingBottom: responsiveHeight(paddingBottom),
         position: 'relative',
       }}>
       <View>
