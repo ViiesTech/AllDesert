@@ -1,7 +1,7 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import AppColors from '../utils/AppColors';
 import AppText from './AppTextComps/AppText';
 import {
@@ -11,28 +11,42 @@ import {
 
 type Props = {
   item?: any,
-  tabContainerOnPress?:any;
-  selectedTab?:any;
+  tabContainerOnPress?: any,
+  selectedTab?: any,
+  unitDetails?: any,
 };
 
-const TabBarTab = ({item, tabContainerOnPress, selectedTab}: Props) => {
+const TabBarTab = ({
+  item,
+  tabContainerOnPress,
+  selectedTab,
+  unitDetails,
+}: Props) => {
   return (
     <TouchableOpacity
       style={{
-        backgroundColor: AppColors.WHITE,
+        backgroundColor: unitDetails
+          ? selectedTab?.id == item?.id
+            ? AppColors.BTNCOLOURS
+            : AppColors.WHITE
+          : AppColors.WHITE,
         width: responsiveWidth(28),
         height: responsiveHeight(8),
         justifyContent: 'center',
         alignItems: 'center',
       }}
-      onPress={tabContainerOnPress}
-      >
+      onPress={tabContainerOnPress}>
       <AppText
         title={item.title}
-        textColor={selectedTab?.id == item?.id ? AppColors.BTNCOLOURS : AppColors.GRAY}
+        textColor={
+          selectedTab?.id == item?.id
+            ? unitDetails
+              ? AppColors.WHITE
+              : AppColors.BTNCOLOURS
+            : AppColors.DARKGRAY
+        }
         textSize={1.7}
-        textFontWeight
-        textTransform={'uppercase'}
+        textTransform={unitDetails ? null : 'uppercase'}
         textAlignment={'center'}
       />
     </TouchableOpacity>
