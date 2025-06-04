@@ -27,6 +27,7 @@ type props = {
   headerBg?: any;
   privateChat?: any;
   paddingBottom?:any;
+  textTransform?:any;
 };
 
 const AppHeader = ({
@@ -44,6 +45,7 @@ const AppHeader = ({
   headerBg,
   paddingBottom,
   privateChat,
+  textTransform,
 }: props) => {
   return (
     <View
@@ -80,6 +82,7 @@ const AppHeader = ({
               textSize={2.5}
               textColor={AppColors.BLACK}
               textFontWeight={textFontWeight}
+              textTransform={textTransform}
             />
             <LineBreak space={0.3} />
             {taskId && (
