@@ -107,7 +107,9 @@ const TechnicianHome = () => {
           justifyContent: 'space-between',
           alignItems: 'center',
         }}>
-        <View style={{flexDirection: 'row', gap: 10, alignItems: 'center'}}>
+        <TouchableOpacity
+          style={{flexDirection: 'row', gap: 10, alignItems: 'center'}}
+          onPress={() => navigateToRoute('Profile')}>
           <Image
             source={AppImages.service_img}
             style={{width: 40, height: 40, borderRadius: 100}}
@@ -126,7 +128,7 @@ const TechnicianHome = () => {
               textFontWeight
             />
           </View>
-        </View>
+        </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigateToRoute('Notifications')}>
           <MaterialCommunityIcons

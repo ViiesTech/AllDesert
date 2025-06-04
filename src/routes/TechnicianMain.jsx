@@ -27,6 +27,7 @@ import UserDetails from '../screens/technician/UserDetails';
 import Calling from '../screens/technician/Calling';
 import Technician from '../screens/technician/Technician';
 import PrivateChat from '../screens/technician/PrivateChat';
+import Profile from '../screens/technician/Profile';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -44,6 +45,7 @@ const TechnicianMain = () => {
       <Stack.Screen name="Calling" component={Calling} />
       <Stack.Screen name="Technician" component={Technician} />
       <Stack.Screen name="PrivateChat" component={PrivateChat} />
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
 };

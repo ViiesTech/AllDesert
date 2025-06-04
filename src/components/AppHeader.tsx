@@ -91,21 +91,23 @@ const AppHeader = ({
           </View>
         </View>
         {privateChat && <LineBreak space={2} />}
-        <View style={privateChat ? {flexDirection: 'row', gap: 5} : null}>
-          {privateChat && (
+        <View style={privateChat ? {flexDirection: 'row', gap: 5} : {}}>
+          {privateChat && subheading && (
             <Ionicons
               name="location"
               size={responsiveFontSize(2.2)}
               color={AppColors.BTNCOLOURS}
             />
           )}
-          <AppText
-            title={subheading}
-            textColor={'#777777'}
-            textSize={privateChat ? 1.6 : 2}
-            textwidth={privateChat ? 60 : 100}
-            lineHeight={privateChat ? 2.3 : null}
-          />
+          {subheading && (
+            <AppText
+              title={subheading}
+              textColor={'#777777'}
+              textSize={privateChat ? 1.6 : 2}
+              textwidth={privateChat ? 60 : 100}
+              lineHeight={privateChat ? 2.3 : null}
+            />
+          )}
         </View>
         {privateChat && <LineBreak space={1} />}
       </View>
