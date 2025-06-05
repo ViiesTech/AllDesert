@@ -8,4 +8,5 @@ export default APPIMAGE = {
     stars: require('../images/stars.png'),
     map: require('../images/map.png'),
     chart: require('../images/chart.png'),
-}
+    fridge: require('../images/fridge.png'),
+};

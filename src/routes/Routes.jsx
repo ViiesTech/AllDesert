@@ -9,7 +9,7 @@ const Routes = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
-      initialRouteName="TechnicianMain">
+      initialRouteName="Auth">
       <Stack.Screen name="Auth" component={Auth} />
       <Stack.Screen name="Main" component={Main} />
       <Stack.Screen name="TechnicianMain" component={TechnicianMain} />

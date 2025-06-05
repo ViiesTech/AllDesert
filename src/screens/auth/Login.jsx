@@ -20,6 +20,7 @@ import {useNavigation} from '@react-navigation/native';
 import TermsAndConditionModal from '../../components/TermsAndConditionModal';
 import EmailVerificationModal from '../../components/EmailVerificationModal';
 import WelcomeModal from '../../components/WelcomeModal';
+import WelcomeToHomeModal from '../../components/WelcomeToHomeModal';
 
 const Login = () => {
   const [isHidePass, setIsHidePass] = useState(false);
@@ -64,7 +65,7 @@ const Login = () => {
         }}
       />
 
-      <WelcomeModal
+      <WelcomeToHomeModal
         isVisible={showWelcomeModal}
         submitOnPress={() => {
           navigation.navigate('Main');
@@ -72,7 +73,7 @@ const Login = () => {
         }}
         onBackdropPress={() => setShowWelcomeModal(false)}
         exploreOnPress={() => {
-          navigation.navigate('Main');
+          navigation.navigate('TechnicianMain');
           setShowWelcomeModal(false);
         }}
       />

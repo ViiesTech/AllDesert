@@ -47,7 +47,7 @@ const menuItems = [
     label: 'About',
     navTo: 'About',
   },
-  {id: 7, icon: 'logout', label: 'LOGOUT', navTo: 'Settings'},
+  {id: 7, icon: 'logout', label: 'LOGOUT', navTo: 'Auth'},
 ];
 
 const MyBalanceScreen = () => {
